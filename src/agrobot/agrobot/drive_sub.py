@@ -25,10 +25,10 @@ class DriveSubscriber(Node):
         # ADD CODE HERE TO EXECUTE WHEN A MESSAGE IS RECEIVED
         ##############################################################
 
-        front_left = msg.fl_motor
-        front_right = msg.fr_motor
-        back_left = msg.bl_motor
-        back_right = msg.br_motor
+        front_left = msg.fl_speed
+        front_right = msg.fr_speed
+        back_left = msg.bl_speed
+        back_right = msg.br_speed
 
         ##############################################################
         # END CODE HERE TO EXECUTE WHEN A MESSAGE IS RECEIVED

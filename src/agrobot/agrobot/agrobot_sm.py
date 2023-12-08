@@ -42,10 +42,10 @@ class Agrobot_SM(Node):
 
     # Publishes a message to the drive topic
     def publish(self, front_left, front_right, back_left, back_right):
-        self.drive_msg.fl_motor = front_left
-        self.drive_msg.fr_motor = front_right
-        self.drive_msg.bl_motor = back_left
-        self.drive_msg.br_motor = back_right
+        self.drive_msg.fl_speed = front_left
+        self.drive_msg.fr_speed = front_right
+        self.drive_msg.bl_speed = back_left
+        self.drive_msg.br_speed = back_right
         self.pub.publish(self.drive_msg)
 
 
