@@ -2,10 +2,16 @@ import rclpy
 from rclpy.node import Node
 from agro_interfaces.msg import Drive
 from agro_interfaces.srv import Process
+from enum import Enum
 import cam_handler
 
 SERVICE_TIMEOUT = 1  # seconds
 QOS_PROFILE = 10
+
+class State(Enum):
+    FIND_ROW = 1
+    FIND_PLANT = 2
+    PROCESS_PLANT = 3
 
 
 class Agrobot_SM(Node):
@@ -47,6 +53,7 @@ def main(args=None):
     rclpy.init(args=args)
 
     agrobot_sm = Agrobot_SM()
+    state = State.FIND_ROW
 
     ##############################################################
     # ADD CAMERA INIT CODE HERE
@@ -63,6 +70,20 @@ def main(args=None):
 
         process_resp = agrobot_sm.send_request(1, 2, 3)
         agrobot_sm.publish(1, 2, 3, 4)
+
+        match state:
+            case State.FIND_ROW:
+                print("Finding row")
+                agrobot_sm.publish(1, 2, 3, 4)
+                # ADD HERE
+            case State.FIND_PLANT:
+                print("Finding plant")
+                agrobot_sm.publish(1, 2, 3, 4)
+                # ADD HERE
+            case State.PROCESS_PLANT:
+                print("Processing plant")
+                process_resp = agrobot_sm.send_request(1, 2, 3)
+                # ADD HERE
 
         ##############################################################
         # END AGROBOT STATE MACHINE HERE
